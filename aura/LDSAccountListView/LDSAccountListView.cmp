@@ -1,0 +1,63 @@
+<aura:component controller="LDSAccountListViewController" > 
+    <aura:attribute name="accList" type="List" /> 
+    <aura:attribute name="menu" type="List" default="View,Edit"/>	
+    <aura:attribute name="currentView" type="String" default="ListView"/> 	
+    <aura:attribute name="selectedRecord" type="String" /> 
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> 
+    <!--Section for Account List View starts--> 
+    <aura:if isTrue="{!v.currentView =='ListView'}"> 
+        <div class="slds-card"> 
+            <div class="slds-card__header slds-grid"> 
+                <header class="slds-media slds-media_center slds-has-flexi-truncate"> 
+                    <div class="slds-media__figure"> 
+                        <lightning:Icon iconName="standard:account" size="large" variant="inverse" /> 
+                    </div> 
+                    <div class="slds-media__body"> 
+                        <h2> <span class="slds-text-heading_small">Accounts({!v.accList.length})</span> </h2> 	      
+                    </div> 
+                </header> 
+                <div class="slds-no-flex"> <lightning:button variant="brand" label="New Account" />   </div> 
+            </div> 
+            <div class="slds-card__body slds-card__body_inner"> 
+                <aura:if isTrue="{!v.accList.length > 0}"> 
+                    <table class="slds-table slds-table_fixed-layout slds-table_bordered slds-table_cell-buffer"> 	
+                        <thead> 
+                            <tr class="slds-text-title--caps"> 
+                                <th scope="col">Actions</th> 
+                                <th scope="col">Name</th> 
+                                <th scope="col">Account Number</th> 
+                            </tr> 
+                        </thead> 
+                        <tbody> 
+                            <aura:iteration items="{!v.accList}" var="item"> 
+                                <tr class="slds-hint-parent"> 
+                                    <td scope="row"> 
+                                        <lightning:buttonMenu iconName="utility:threedots" > 
+                                            <aura:iteration items="{!v.menu}" var="menuItem"> 
+                                                <lightning:menuItem label="{!menuItem}" value="{!item.Id + '---' + menuItem}" onactive="{!c.onSelectMenuItem}"/> 
+                                            </aura:iteration> 
+                                        </lightning:buttonMenu> 
+                                    </td> 
+                                    <td > {!item.Name}</td> 
+                                    <td > {!item.AccountNumber}</td> 
+                                </tr> 
+                            </aura:iteration> 
+                        </tbody> 
+                    </table>
+                    
+                </aura:if> 
+            </div> 
+            <footer class="slds-card__footer">@sunil02kumar</footer> </div> 
+    </aura:if>
+    <!--Section for Account List View ends--> 
+    <!--Section for Account record View starts--> 
+    <aura:if isTrue="{!v.currentView =='RecordView'}"> 
+        <c:LDSAccountView recordId="{!v.selectedRecord}" currView="{!v.currentView}"/> </aura:if> 
+    <!--Section for Account record View ends--> 
+    
+    <!--Section for Account record edit starts--> 
+    <aura:if isTrue="{!v.currentView =='RecordEdit'}"> 
+        <c:LDSAccountEdit recordId="{!v.selectedRecord}" currView="{!v.currentView}" /> </aura:if> 
+    <!--Section for Account record edit ends-->
+    
+</aura:component>

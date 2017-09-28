@@ -1,0 +1,48 @@
+<aura:component >
+    <aura:attribute name="recordId" type="String" required="true"/>
+    <aura:attribute name="recordInfo" type="Object"/>
+    <aura:attribute name="fieldsInfo" type="Object"/>
+    <aura:attribute name="currView" type="String" />
+
+    <aura:attribute name="recordError" type="String"/>
+    <force:recordData aura:id="recordLoader"  
+                      recordId="{!v.recordId}"  
+                      mode="EDIT"
+                      targetRecord="{!v.recordInfo}"
+                      targetFields="{!v.fieldsInfo}" 
+                      fields="Name,Owner.Name,AnnualRevenue,AccountNumber"
+                      targetError="{!v.recordError}"
+                      />
+    <div class="maincontainer"> 
+        <div class="slds-col--padded slds-size--1-of-1 slds-medium--1-of-1 slds-large-size--1-of-1"> 
+            <div class="slds-form-element__control" > 
+                <lightning:input label="Account Name" name="accname" value="{!v.fieldsInfo.Name}" disabled="true"/> 
+            </div> 
+        </div>
+        <div class="slds-col--padded slds-size--1-of-1 slds-medium--1-of-1 slds-large-size--1-of-1"> 
+            <div class="slds-form-element__control" > 
+                <lightning:input type="number" label="Annual Revenue" name="atype" value="{!v.fieldsInfo.AnnualRevenue}"  formatter="currency" disabled="true"/>
+            </div> 
+        </div> 
+        <div class="slds-col--padded slds-size--1-of-1 slds-medium--1-of-1 slds-large-size--1-of-1"> 
+            <div class="slds-form-element__control" > 
+                <lightning:input label="Account Number" name="accnum" value="{!v.fieldsInfo.AccountNumber}" disabled="true"/> 
+            </div>
+        </div>
+        <div class="slds-col--padded slds-size--1-of-1 slds-medium--1-of-1 slds-large-size--1-of-1"> 
+            <div class="slds-form-element__control" > 
+                <!--<lightning:button variant="brand" label="Save" onclick="{!c.saveRecordHandler}"/> -->
+                <lightning:button variant="brand" label="Back" onclick="{!c.goBackToListView}"/> 
+            </div> 
+        </div>
+    </div>
+    
+    <!-- Display Lightning Data Service errors, if any -->
+    <aura:if isTrue="{!not(empty(v.recordError))}">
+        <div class="recordError">
+            <ui:message title="Error" severity="error" closable="true">
+                {!v.recordError}
+            </ui:message>
+        </div>
+    </aura:if>    
+</aura:component>

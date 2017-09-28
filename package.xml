@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>LDSAccountListViewController</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>ApplicationEventDemoApp</members>
+        <members>IndependentCarAccidentNotifier</members>
+        <members>IndependentHospital</members>
+        <members>LDSAccountEdit</members>
+        <members>LDSAccountListView</members>
+        <members>LDSAccountListViewApp</members>
+        <members>LDSAccountView</members>
+        <members>carAccidentAppEvent</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
+        <members>LightningEventsResources</members>
+        <name>StaticResource</name>
+    </types>
+    <version>35.0</version>
+</Package>

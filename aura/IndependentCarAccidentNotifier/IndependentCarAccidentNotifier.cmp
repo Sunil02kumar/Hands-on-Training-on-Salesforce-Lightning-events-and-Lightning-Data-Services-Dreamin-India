@@ -1,0 +1,28 @@
+<aura:component >
+    <aura:registerEvent name="carAccidentAppEvent" type="c:carAccidentAppEvent"/>
+    
+    <div class="slds-card">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    </div>
+                <div class="slds-media__body">
+                    <h2>
+                        <a href="javascript:void(0);" class="slds-card__header-link slds-truncate" >
+                            <span class="slds-text-heading_small">Car Accident Notifier</span>
+                        </a>
+                    </h2>
+                </div>
+            </header>
+            <div class="slds-no-flex">
+                <lightning:button label="Send Notification via App Events " variant="brand" onclick="{!c.fireCarAccidentAppEvent}"/>
+            </div>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+            <div class="slds-align--absolute-center">
+                <img src="{!$Resource.LightningEventsResources  + '/resources/accident.jpg'}" height="256" width="200"/>
+            </div>
+        </div>
+        <footer class="slds-card__footer">@sunil02kumar</footer>
+    </div>
+</aura:component>
